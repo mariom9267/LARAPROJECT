@@ -19,10 +19,11 @@ Route::get('/', function () {
 Route::get('/about', function () {
     return view('about');
 });
-Route::get('/service', function () {
-    return view('service');
-});
+Route::get('/service/{service_id}/{service_name}', function ($service_id,$service_name) {
+    return $service_id." ".$service_name;
+})->name("sevice-page");
 Route::get('/contact', function () {
     return view('contact');
 });
+Route::
 
