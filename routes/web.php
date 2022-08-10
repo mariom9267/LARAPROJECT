@@ -16,18 +16,23 @@ use Psy\Command\WhereamiCommand;
 |
 */
 
-Route::get('/', function () {
-    return view('home',[
-        'page_name'=>'Home page',
-        'name'=>'laravel 9 course'
-    ]);
-// redirect('/contact');
-})->name('home');
+// Route::get('/', function () {
+//     return view('home',[
+//         'page_name'=>'Home page',
+//         'name'=>'laravel 9 course'
+//     ]);
+// // redirect('/contact');
+// })->name('home')->middleware('auth');
+
+// Route::get('/login', function(){
+//     return('login');
+// })->name('login');
 
 
 
 // understanding request and response cycle
-Route::get('/',function(Request $request){
+// Route::get('/',function(Request $request){
+    // dd($request->all());
     // $data=[
     //     'page_name'=>'Home page',
     //     'name'=>'laravel 9 course'
@@ -36,7 +41,7 @@ Route::get('/',function(Request $request){
     // ->header('content-type','application/json')
     // ->cookie('My_IDCard','maria',3600);
 
-     return redirect('/about');
+    //  return redirect('/about');
 // dd(
 //    " laravel 9",
 //    $request->path(),
@@ -54,14 +59,14 @@ Route::get('/',function(Request $request){
 //    $request->prefers('text/html','application/json'),
 
 // );
-}) ;
-Route::get('/about', function () {
-    return view('about',[
-        'page_name'=>'About page',
-        'name'=>'laravel 9 course'
-    ]);
-    redirect('/contact');
-})->name('about');
+// }) ;
+// Route::get('/about', function () {
+//     return view('about',[
+//         'page_name'=>'About page',
+//         'name'=>'laravel 9 course'
+//     ]);
+//     redirect('/contact');
+// })->name('about');
 // // Route::get('/service/{service_id}/{service_name}', function ($service_id,$service_name) {
 // //     return $service_id." ".$service_name;
 // // })->name("sevice-page");
@@ -70,53 +75,110 @@ Route::get('/about', function () {
 //     $mobile='01871378161';
 //     return view('contact',compact('page_name','mobile'));
 // });
-Route::get('/contact', function () {
-    $page_name='contact page';
-    // $product_count='15';
-    // $color=['red','blue','green'];
-    $products=[
-        1=>[
-            'name'=>'Bag',
-            'color'=>'red',
-            'price'=>'1240'
-        ],
-        2=>[
-            'name'=>'Apple',
-            'color'=>'green',
-            'price'=>'250'
-        ],
-        ];
-$product_count=count($products);
-return response()->json([
-    'products'=>$products,
-    'product_count'=>$product_count,
-], 200)->header('content-type','application/json')
-       ->cookie('My_IDCard','maria',3600);;
-    // return view('contact',compact('page_name',
-    // 'product_count',
-    // 'products'));
-})->name('contact');
+// Route::get('/contact', function () {
+//     $page_name='contact page';
+//     // $product_count='15';
+//     // $color=['red','blue','green'];
+//     $products=[
+//         1=>[
+//             'name'=>'Bag',
+//             'color'=>'red',
+//             'price'=>'1240'
+//         ],
+//         2=>[
+//             'name'=>'Apple',
+//             'color'=>'green',
+//             'price'=>'250'
+//         ],
+//         ];
+// $product_count=count($products);
+// return response()->json([
+//     'products'=>$products,
+//     'product_count'=>$product_count,
+// ], 200)->header('content-type','application/json')
+//        ->cookie('My_IDCard','maria',3600);;
+//     // return view('contact',compact('page_name',
+//     // 'product_count',
+//     // 'products'));
+// })->name('contact');
 
-Route::get('/course-content/download',function(){
-    return response()->download(public_path('/Mariom_Akter_1269267.pdf'),'laravel 9 Master Mariom_Akter_1269267.pdf');
-});
-
-
-
-// Route::get('/service',function(){
-//     $services=[
-//         'web Design',
-//         'web Development',
-//         'App Development',
-//     ];
-// return view('service',compact('services'));
+// Route::get('/course-content/download',function(){
+//     return response()->download(public_path('/Mariom_Akter_1269267.pdf'),'laravel 9 Master Mariom_Akter_1269267.pdf');
 // });
-// // Route::get('/user/{id}/{name}',function($id,$name){
-// //     echo $id,$name;
 
-// // })->where(['id'=>'[0-9]+','name'=>'[A-Za-z]+']);
 
-// Route::get('/category/{category_name}',function($category_name){
-// echo $category_name;
-// })->WhereIn('category_name',['electronics','fusion','leptop']);
 
+
+// // Route::get('/service',function(){
+// //     $services=[
+// //         'web Design',
+// //         'web Development',
+// //         'App Development',
+// //     ];
+// // return view('service',compact('services'));
+// // });
+// // // Route::get('/user/{id}/{name}',function($id,$name){
+// // //     echo $id,$name;
+
+// // // })->where(['id'=>'[0-9]+','name'=>'[A-Za-z]+']);
+
+// // Route::get('/category/{category_name}',function($category_name){
+// // echo $category_name;
+// // })->WhereIn('category_name',['electronics','fusion','leptop']);
+
+// Route::prefix('admin')->name('laravel')->group(function(){
+//     Route::get('/home', function(){
+//         return view('home');
+//     })->name('home');
+//     Route::get('/about', function(){
+//         return view('about');
+//     })->name('about');
+//     Route::get('/contact', function(){
+//         return view('contact');
+//     })->name('contact');
+//     Route::get('/service', function(){
+//         return view('service');
+//     })->name('service');
+// });
+// Route::prefix('superadmin')->name('superadmin.')->group(function(){
+//     Route::get('/home', function(){
+//         return view('home');
+//     })->name('home');
+//     Route::get('/about', function(){
+//         return view('about');
+//     })->name('about');
+//     Route::get('/contact', function(){
+//         return view('contact');
+//     })->name('contact');
+//     Route::get('/service', function(){
+//         return view('service');
+//     })->name('service');
+// });
+
+
+
+
+
+
+Route::get('/send', function(Request $request){
+$secret_key=25250;
+  $user_key=$request->user_key;
+    $data=[
+        'user_name'=>'enam',
+        'designation'=>'fullStack Developer',
+        'mobile'=>'018745236987',
+        'bank_acc'=>'2163465256554687',
+
+    ];
+    if($secret_key == $user_key){
+        return response()->json([
+            'user_info'=>$data
+        ]);
+    }
+    else{
+        return response([
+            'message'=>'provide valid secret key '
+        ], 404);
+
+    }
+});
