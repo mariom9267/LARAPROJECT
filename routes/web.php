@@ -20,29 +20,37 @@ Route::get('/', function () {
         'page_name'=>'Home page',
         'name'=>'laravel 9 course'
     ]);
+
 });
 
 
 
 // understanding request and response cycle
 Route::get('/',function(Request $request){
-dd(
-   " laravel 9",
-   $request->path(),
-   $request->is('/'),
-   $request->fullUrl(),
-   $request->host(),
-   $request->httphost(),
-   $request->schemeAndhttphost(),
+    $data=[
+        'page_name'=>'Home page',
+        'name'=>'laravel 9 course'
+    ];
+    return response($data)
+    ->header('content-type','application/json')
+    ->cookie('My_IDCard','maria',3600);
+// dd(
+//    " laravel 9",
+//    $request->path(),
+//    $request->is('/'),
+//    $request->fullUrl(),
+//    $request->host(),
+//    $request->httphost(),
+//    $request->schemeAndhttphost(),
 
-   $request->routeIs('home'),
-   $request->header('X-Header-Name'),
-   $request->header('X-Header-Name','default'),
-   $request->bearerToken(),
-   $request->ip(),
-   $request->prefers('text/html','application/json'),
+//    $request->routeIs('home'),
+//    $request->header('X-Header-Name'),
+//    $request->header('X-Header-Name','default'),
+//    $request->bearerToken(),
+//    $request->ip(),
+//    $request->prefers('text/html','application/json'),
 
-);
+// );
 }) ;
 // Route::get('/about', function () {
 //     return view('about',[
