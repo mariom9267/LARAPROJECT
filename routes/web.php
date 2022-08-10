@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Auth\Events\Verified;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Psy\Command\WhereamiCommand;
@@ -20,20 +21,22 @@ Route::get('/', function () {
         'page_name'=>'Home page',
         'name'=>'laravel 9 course'
     ]);
-
-});
+// redirect('/contact');
+})->name('home');
 
 
 
 // understanding request and response cycle
 Route::get('/',function(Request $request){
-    $data=[
-        'page_name'=>'Home page',
-        'name'=>'laravel 9 course'
-    ];
-    return response($data)
-    ->header('content-type','application/json')
-    ->cookie('My_IDCard','maria',3600);
+    // $data=[
+    //     'page_name'=>'Home page',
+    //     'name'=>'laravel 9 course'
+    // ];
+    // return response($data)
+    // ->header('content-type','application/json')
+    // ->cookie('My_IDCard','maria',3600);
+
+     return redirect('/about');
 // dd(
 //    " laravel 9",
 //    $request->path(),
@@ -52,41 +55,54 @@ Route::get('/',function(Request $request){
 
 // );
 }) ;
-// Route::get('/about', function () {
-//     return view('about',[
-//         'page_name'=>'About page',
-//         'name'=>'laravel 9 course'
-//     ]);
-// });
+Route::get('/about', function () {
+    return view('about',[
+        'page_name'=>'About page',
+        'name'=>'laravel 9 course'
+    ]);
+    redirect('/contact');
+})->name('about');
 // // Route::get('/service/{service_id}/{service_name}', function ($service_id,$service_name) {
 // //     return $service_id." ".$service_name;
 // // })->name("sevice-page");
-// // Route::get('/contact', function () {
-// //     $page_name='contact page';
-// //     $mobile='01871378161';
-// //     return view('contact',compact('page_name','mobile'));
-// // });
 // Route::get('/contact', function () {
 //     $page_name='contact page';
-//     // $product_count='15';
-//     // $color=['red','blue','green'];
-//     $products=[
-//         1=>[
-//             'name'=>'Bag',
-//             'color'=>'red',
-//             'price'=>'1240'
-//         ],
-//         2=>[
-//             'name'=>'Apple',
-//             'color'=>'green',
-//             'price'=>'250'
-//         ]
-//         ];
-// $product_count=count($products);
-//     return view('contact',compact('page_name',
-//     'product_count',
-//     'products'));
-// })->name('contact');
+//     $mobile='01871378161';
+//     return view('contact',compact('page_name','mobile'));
+// });
+Route::get('/contact', function () {
+    $page_name='contact page';
+    // $product_count='15';
+    // $color=['red','blue','green'];
+    $products=[
+        1=>[
+            'name'=>'Bag',
+            'color'=>'red',
+            'price'=>'1240'
+        ],
+        2=>[
+            'name'=>'Apple',
+            'color'=>'green',
+            'price'=>'250'
+        ],
+        ];
+$product_count=count($products);
+return response()->json([
+    'products'=>$products,
+    'product_count'=>$product_count,
+], 200)->header('content-type','application/json')
+       ->cookie('My_IDCard','maria',3600);;
+    // return view('contact',compact('page_name',
+    // 'product_count',
+    // 'products'));
+})->name('contact');
+
+Route::get('/course-content/download',function(){
+    return response()->download(public_path('/Mariom_Akter_1269267.pdf'),'laravel 9 Master Mariom_Akter_1269267.pdf');
+});
+
+
+
 // Route::get('/service',function(){
 //     $services=[
 //         'web Design',
