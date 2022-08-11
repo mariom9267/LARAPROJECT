@@ -1,9 +1,10 @@
 <?php
 
-use Illuminate\Auth\Events\Verified;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
 use Psy\Command\WhereamiCommand;
+use Illuminate\Auth\Events\Verified;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FrontController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,13 +17,7 @@ use Psy\Command\WhereamiCommand;
 |
 */
 
-// Route::get('/', function () {
-//     return view('home',[
-//         'page_name'=>'Home page',
-//         'name'=>'laravel 9 course'
-//     ]);
-// // redirect('/contact');
-// })->name('home')->middleware('auth');
+Route::get('/',[FrontController::class,'home'])->name('home');
 
 // Route::get('/login', function(){
 //     return('login');
@@ -30,41 +25,13 @@ use Psy\Command\WhereamiCommand;
 
 
 
-// understanding request and response cycle
-// Route::get('/',function(Request $request){
-    // dd($request->all());
-    // $data=[
-    //     'page_name'=>'Home page',
-    //     'name'=>'laravel 9 course'
-    // ];
-    // return response($data)
-    // ->header('content-type','application/json')
-    // ->cookie('My_IDCard','maria',3600);
 
-    //  return redirect('/about');
-// dd(
-//    " laravel 9",
-//    $request->path(),
-//    $request->is('/'),
-//    $request->fullUrl(),
-//    $request->host(),
-//    $request->httphost(),
-//    $request->schemeAndhttphost(),
+Route::get('/about',[FrontController::class,('about')]);
 
-//    $request->routeIs('home'),
-//    $request->header('X-Header-Name'),
-//    $request->header('X-Header-Name','default'),
-//    $request->bearerToken(),
-//    $request->ip(),
-//    $request->prefers('text/html','application/json'),
+Route::get('/service',[FrontController::class,('service')])->name('service');
+Route::get('contact',[FrontController::class,('contact')]);
 
-// );
-// }) ;
-// Route::get('/about', function () {
-//     return view('about',[
-//         'page_name'=>'About page',
-//         'name'=>'laravel 9 course'
-//     ]);
+
 //     redirect('/contact');
 // })->name('about');
 // // Route::get('/service/{service_id}/{service_name}', function ($service_id,$service_name) {
@@ -160,25 +127,4 @@ use Psy\Command\WhereamiCommand;
 
 
 
-Route::get('/send', function(Request $request){
-$secret_key=25250;
-  $user_key=$request->user_key;
-    $data=[
-        'user_name'=>'enam',
-        'designation'=>'fullStack Developer',
-        'mobile'=>'018745236987',
-        'bank_acc'=>'2163465256554687',
-
-    ];
-    if($secret_key == $user_key){
-        return response()->json([
-            'user_info'=>$data
-        ]);
-    }
-    else{
-        return response([
-            'message'=>'provide valid secret key '
-        ], 404);
-
-    }
-});
+Route::get('/send',[FrontController::class,'send'])->name('send');
