@@ -5,6 +5,7 @@ use Psy\Command\WhereamiCommand;
 use Illuminate\Auth\Events\Verified;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FrontController;
+use App\Http\Controllers\postController;
 
 /*
 |--------------------------------------------------------------------------
@@ -121,7 +122,7 @@ Route::get('contact',[FrontController::class,('contact')]);
 //         return view('service');
 //     })->name('service');
 // });
-
+Route::resource('/posts',postController::class);
 
 
 
