@@ -38,10 +38,10 @@ class categoryController extends Controller
         // dd($request->all());
         $request->validate([
             'name'=>'required|string|alpha',
-            'slug'=>'required|string',
+            'slug'=>'required|string|alpha',
             'is_active'=>'nullable'
         ]);
-        dd($request->all());
+        // dd($request->all());
         category::create([
             'name'=>$request->name,
             'slug'=>$request->slug,

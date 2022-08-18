@@ -7,11 +7,29 @@
                 @csrf
                 <div class="mb-3">
                     <label for="name" class="form-label">Category Name </label>
-                    <input type="text" class="form-control" name="name" id="name" placeholder="Pldease Provide Category Name">
+                    <input type="text" class="form-control  @error('name')
+                    is-invalid
+                @enderror" name="name" id="name" placeholder="Pldease Provide Category Name">
+                    @error('name')
+                    <span class="invalid-feedback" role="alert">
+
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
                   </div>
+
+
                 <div class="mb-3">
                     <label for="slug" class="form-label">Slug </label>
-                    <input type="text" class="form-control" name="slug" id="slug" placeholder="Pldease Provide Category slug">
+                    <input type="text" class="form-control @error('slug')
+                        is-invalid
+                    @enderror" name="slug" id="slug" placeholder="Pldease Provide Category slug">
+                    @error('slug')
+                        <span class="invalid-feedback" role="alert">
+
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
                   </div>
                   <div class="form-check mb-3">
                       <input type="checkbox" name="is_active" class="form-check-input" id="flexCheckDefault">
