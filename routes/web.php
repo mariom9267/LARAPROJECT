@@ -1,11 +1,8 @@
 <?php
 
-use Illuminate\Http\Request;
-use Psy\Command\WhereamiCommand;
-use Illuminate\Auth\Events\Verified;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\categoryController;
 use App\Http\Controllers\FrontController;
-use App\Http\Controllers\postController;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,22 +13,18 @@ use App\Http\Controllers\postController;
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-*/
+ */
 
-Route::get('/',[FrontController::class,'home'])->name('home');
+Route::get('/', [FrontController::class,'home'])->name('home');
 
 // Route::get('/login', function(){
 //     return('login');
 // })->name('login');
 
+Route::get('/about', [FrontController::class, ('about')]);
 
-
-
-Route::get('/about',[FrontController::class,('about')]);
-
-Route::get('/service',[FrontController::class,('service')])->name('service');
-Route::get('contact',[FrontController::class,('contact')]);
-
+Route::get('/service', [FrontController::class, ('service')])->name('service');
+Route::get('contact', [FrontController::class, ('contact')]);
 
 //     redirect('/contact');
 // })->name('about');
@@ -73,9 +66,6 @@ Route::get('contact',[FrontController::class,('contact')]);
 // Route::get('/course-content/download',function(){
 //     return response()->download(public_path('/Mariom_Akter_1269267.pdf'),'laravel 9 Master Mariom_Akter_1269267.pdf');
 // });
-
-
-
 
 // // Route::get('/service',function(){
 // //     $services=[
@@ -122,10 +112,6 @@ Route::get('contact',[FrontController::class,('contact')]);
 //         return view('service');
 //     })->name('service');
 // });
-Route::resource('/posts',postController::class);
+Route::resource('/category', categoryController::class);
 
-
-
-
-
-Route::get('/send',[FrontController::class,'send'])->name('send');
+Route::get('/send', [FrontController::class, 'send'])->name('send');
