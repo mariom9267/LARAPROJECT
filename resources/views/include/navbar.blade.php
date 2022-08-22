@@ -21,6 +21,9 @@
           <li class="nav-item">
             <a class="nav-link" href="{{route('category.create')}}">Category</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{route('subcategory.index')}}">subCategory</a>
+          </li>
             </ul>
         <form class="d-flex">
           <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
